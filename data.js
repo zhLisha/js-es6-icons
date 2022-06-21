@@ -167,7 +167,7 @@ function printCards(array, container) {
 		const {name, prefix, type, family, color} = element; 
 	
 		const newCard = `
-		<div class="card" style="color: ${color}">
+		<div class="card flex" style="color: ${color}">
 			<i class="${family} ${prefix}${name}"></i>
 			<span>${name}</span>
 		</div>
