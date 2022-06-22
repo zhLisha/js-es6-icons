@@ -125,6 +125,12 @@ const iconContainer = document.querySelector('.js-all-card');
 // FUNCTION PER POPOLARE IL DOM
 printCards(allIcons, iconContainer);
 
+// POPOLARE LE OPTION NELLA SELECT 
+// Appendere a #category le optin (una per ogni categoria) 
+// Mi serve un array che contenga le categorie non ripetute
+const iconTypes = getIconType(allIcons);
+printTypeOptions(iconTypes);
+
 
 // ----------------------
 //     EVENT CHANGE
@@ -199,3 +205,28 @@ function generateColor() {
 function getRndInteger(min, max) {
 	return Math.floor(Math.random() * (max - min + 1) ) + min;
 };
+
+
+// A partire dall'array di icone genera un array di typpe di icone senza duplicati
+function getIconType(iconsArray) {
+	const types = [];
+	// Per ogni elemento dell'array appendo il type a types solo se non e' gia' compreso.
+	iconsArray.forEach((element) => {
+		if(!types.includes(element.type)) {
+			types.push(element.type);
+		}
+	});
+	return types;
+};
+
+// Stampa le option nella selec per filtrare le icone per tipo
+function printTypeOptions(typesArray) {
+	let typeSelect = document.querySelector('#category');
+	typesArray.forEach((element) => {
+		const newOption = `
+		<option value="${element}">${element}</option>
+		`
+		typeSelect.innerHTML += newOption;
+	});
+
+}
